@@ -97,8 +97,11 @@
     <Compile Include="Assets\EasyAR\Scripts\RecorderBehaviour.cs" />
     <Compile Include="Assets\EasyAR\Scripts\RenderCameraBehaviour.cs" />
     <Compile Include="Assets\EasyAR\Scripts\VideoPlayerBehaviour.cs" />
+    <Compile Include="Assets\Script\FPSCounter.cs" />
     <Compile Include="Assets\Script\SimpleJSON.cs" />
     <Compile Include="Assets\Script\Tools.cs" />
+    <Compile Include="Assets\Script\color\ColorControl.cs" />
+    <Compile Include="Assets\Script\color\JudgeColor.cs" />
     <Compile Include="Assets\Script\kou\Kou3D.cs" />
     <Compile Include="Assets\Script\kou\KouScan.cs" />
     <Compile Include="Assets\Script\kou\KouUI.cs" />
