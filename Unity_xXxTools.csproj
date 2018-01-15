@@ -101,6 +101,7 @@
     <Compile Include="Assets\Script\SimpleJSON.cs" />
     <Compile Include="Assets\Script\Tools.cs" />
     <Compile Include="Assets\Script\color\ColorControl.cs" />
+    <Compile Include="Assets\Script\color\ColorUI.cs" />
     <Compile Include="Assets\Script\color\JudgeColor.cs" />
     <Compile Include="Assets\Script\kou\Kou3D.cs" />
     <Compile Include="Assets\Script\kou\KouScan.cs" />

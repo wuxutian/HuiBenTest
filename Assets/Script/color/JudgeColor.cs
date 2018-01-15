@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class JudgeColor : MonoBehaviour
 {
+
+
     Camera cam;
     RenderTexture renderTexture;
 
     [SerializeField]
-    Image img = null;
+    ColorUI UI = null;
 
     public Color Z_U_C;
     public Color Z_M_C;
@@ -48,7 +50,7 @@ public class JudgeColor : MonoBehaviour
             renderTexture = new RenderTexture(Screen.width / 10, Screen.height / 10, -50);
         }
 
-        cam.targetTexture = renderTexture;
+        cam.targetTexture = renderTexture; 
         //cam.Render();
 
         int width = renderTexture.width;
@@ -59,7 +61,7 @@ public class JudgeColor : MonoBehaviour
         texture2D.Apply();
 
 
-        //img.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
+        //UI.img.sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0.5f, 0.5f));
         JudgeNum(texture2D);
 
     }
@@ -90,6 +92,7 @@ public class JudgeColor : MonoBehaviour
 
             }
         }
-        Debug.LogError(Z_num + "   " + L_num);
+        UI.TextNum(Z_num,L_num);
+        //Debug.LogError(Z_num + "   " + L_num);
     }
 }
