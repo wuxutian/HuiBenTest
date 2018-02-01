@@ -35,6 +35,12 @@ public class KouScan : MonoBehaviour {
         string tempName = Convert.ToInt64(ts.TotalMilliseconds).ToString();
 
         string path = Application.persistentDataPath + tempName + ".png";
+        
+        var tempCol = mTexture.GetPixel(10, 10);
+
+        _cutCol = (int)(tempCol.r * 255 + 10);
+        _baiseCol = (int)(tempCol.r * 255 - 20);
+        Debug.LogError(tempCol.r + "   " + tempCol.r * 255 + "   " + _cutCol + "   " + _baiseCol);
 
         mTexture = Tools.ScaleTexture(mTexture, mTexture.width / 8, mTexture.height / 8);
 

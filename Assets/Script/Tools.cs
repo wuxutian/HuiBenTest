@@ -81,6 +81,23 @@ public class Tools {
         return audio;
     }
 
+    //读取  2D 纹理
+    public static Texture2D LoadTexture2D(string path)
+    {
+        Texture2D tex = new Texture2D(100, 100);
+
+        try
+        {
+            tex = (Texture2D)Resources.Load(path, typeof(Texture2D));
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("!!!! tex  = Null  path =" + path);
+            return null;
+        }
+        return tex;
+    }
+
     // 修改替换 图片
     public static void SetObjectImage(GameObject go, string path, string img_path)
     {
@@ -419,6 +436,7 @@ public class Tools {
         return result;
     }
 
+    //敏感字库查询
     public static bool IsSensitive(string name)
     {
         bool temp = false;
@@ -437,6 +455,7 @@ public class Tools {
         return temp;
     }
 
+    //2DTexture  缩放
     public static Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
     {
         Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
@@ -455,6 +474,21 @@ public class Tools {
     }
 
 
+    //  判断点击是否UGui () 需放在 updata里面
+    /*
+        bool isOnGUGI = false;
+        if (Input.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
+        {
+#if IPHONE || ANDROID
+			if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+#else
+            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+#endif
+                isOnGUGI = true;
 
+            else
+                isOnGUGI = false;
+        }
+     */
 }
 

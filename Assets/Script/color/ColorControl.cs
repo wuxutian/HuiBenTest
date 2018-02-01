@@ -28,7 +28,6 @@ public class ColorControl : MonoBehaviour {
         tex2d = new Texture2D(TexPixelLength, TexPixelLength, TextureFormat.RGB24, true);
 
         Init();
-
     }
 	
 	// Update is called once per frame
@@ -38,7 +37,7 @@ public class ColorControl : MonoBehaviour {
 
     void Init ()
     {
-        InitPlane(Color.green);
+        //InitPlane(Color.green);
     }
 
     void InitPlane(Color col)
@@ -85,9 +84,7 @@ public class ColorControl : MonoBehaviour {
     void InitChooseEndCol()
     {
         Image img = chooseC.transform.FindChild("bg").GetComponent<Image>();
-
-         
-
+        
     }
     
 }
