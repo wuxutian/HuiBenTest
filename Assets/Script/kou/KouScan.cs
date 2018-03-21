@@ -10,8 +10,8 @@ public class KouScan : MonoBehaviour {
     int[,] point;  //9宫算时存储每个像素上的状态
     Texture2D mTexture = null;
 
-    public int _baiseCol = 100;
-    public int _cutCol = 40;
+    public Color _baiseCol = Color.white;
+    public Color _cutCol = Color.black;
 
     public KouUI ui = null;
 
@@ -36,13 +36,12 @@ public class KouScan : MonoBehaviour {
 
         string path = Application.persistentDataPath + tempName + ".png";
         
-        var tempCol = mTexture.GetPixel(10, 10);
+        mTexture = Tools.ScaleTexture(mTexture, mTexture.width / 7, mTexture.height / 7);
+        var tempCol = mTexture.GetPixel(5, 5);
 
-        _cutCol = (int)(tempCol.r * 255 + 10);
-        _baiseCol = (int)(tempCol.r * 255 - 20);
-        Debug.LogError(tempCol.r + "   " + tempCol.r * 255 + "   " + _cutCol + "   " + _baiseCol);
+        _cutCol = new Color(tempCol.r- 0.2f, tempCol.g - 0.2f, tempCol.b - 0.2f);
+        _baiseCol = new Color(tempCol.r- 0.1f, tempCol.g - 0.1f, tempCol.b - 0.1f);
 
-        mTexture = Tools.ScaleTexture(mTexture, mTexture.width / 8, mTexture.height / 8);
 
         frame["starX"] = 0;
         frame["starY"] = 0;
@@ -66,13 +65,20 @@ public class KouScan : MonoBehaviour {
             for (int j = 0; j < tex.height; j++)
             {
                 var col = mTexture.GetPixel(frame["starX"] + i, frame["starY"] + j);
+
                 if (point[i, j] > 0)
                 {
                     col.a = 0;
                     tex.SetPixel(i, j, col);
                 }
                 else
+                {
+                    //if (col.r < 0.05f && col.g < 0.05f && col.b < 0.05f)
+                    //{
+                    //    col = Color.black;
+                    //}
                     tex.SetPixel(i, j, col);
+                }
             }
         }
         //----------------------------------------
@@ -87,7 +93,6 @@ public class KouScan : MonoBehaviour {
 
         ui.img.sprite = sprite;
     }
-    
     
     void Judge(int width, int height) // 循环计算
     {
@@ -162,9 +167,8 @@ public class KouScan : MonoBehaviour {
     {
         if (point[i, j] < 1) //若这个点没有被赋值和计算过  就开始判断
         {
-
             var col = mTexture.GetPixel(frame["starX"] + i, frame["starY"] + j); //up
-            if (col.r * 255 > _baiseCol && col.g * 255 > _baiseCol && col.b * 255 > _baiseCol)
+            if (col.r > _baiseCol.r && col.g > _baiseCol.g && col.b > _baiseCol.b)
             {
                 point[i, j] = point_num;   // 若颜色是白色   就给这个点赋值，作为线框外的点
                 return true;
@@ -181,7 +185,7 @@ public class KouScan : MonoBehaviour {
             for (int j = 0; j < tex.height; j++)
             {
                 var temp = tex.GetPixel(i, j);
-                if (temp.r * 255 < _cutCol && temp.g * 255 < _cutCol && temp.b * 255 < _cutCol)
+                if (temp.r < _cutCol.r && temp.g < _cutCol.g && temp.b < _cutCol.b)
                 {
                     if (frame["starX"] == 0)
                     {

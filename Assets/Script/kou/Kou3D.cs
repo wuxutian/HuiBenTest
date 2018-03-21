@@ -67,6 +67,7 @@ public class Kou3D : MonoBehaviour {
         Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
 
         Rect mRect = new Rect(0, pos.y - Screen.width / 2, Screen.width, Screen.width);
+        //Rect mRect = new Rect(0, pos.y - Screen.height / 2, Screen.width, Screen.width);
 
         yield return new WaitForEndOfFrame();
         Texture2D mTexture = new Texture2D((int)mRect.width, (int)mRect.height, TextureFormat.RGB24, false);
